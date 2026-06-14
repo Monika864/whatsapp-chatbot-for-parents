@@ -1,14 +1,40 @@
 {
-  "name": "parent-chatbot-frontend",
+  "name": "whatsapp-chatbot",
   "version": "1.0.0",
-  "private": true,
+  "main": "src/server.js",
   "scripts": {
-    "start": "serve -l 5173 .",
-    "dev": "serve -l 5173 ."
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:psql": "docker exec -it parent-chatbot-postgres psql -U postgres -d parent_chatbot",
+    "spring:build": "cd spring-whatsapp-backend && ..\\.tools\\apache-maven-3.9.9\\bin\\mvn.cmd -DskipTests package",
+    "spring:killport": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$p = Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1; if ($p) { Stop-Process -Id $p.OwningProcess -Force; Write-Host ('Killed PID ' + $p.OwningProcess) } else { Write-Host 'Port 8080 already free' }\"",
+    "spring:start": "npm run spring:killport && set WHATSAPP_VERIFY_TOKEN=&& set WHATSAPP_ACCESS_TOKEN=&& set WHATSAPP_PHONE_NUMBER_ID=&& cd spring-whatsapp-backend && ..\\.tools\\apache-maven-3.9.9\\bin\\mvn.cmd spring-boot:run",
+    "start:backend": "node src/server.js",
+    "dev:backend": "nodemon src/server.js",
+    "start:all": "docker compose up -d && npm run start:backend",
+    "dev:all": "docker compose up -d && npm run dev:backend",
+    "start": "npm run start:backend",
+    "dev": "npm run dev:backend",
+    "test": "echo \"No tests configured yet\""
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
-    "firebase": "^12.10.0",
-    "serve": "^14.2.4",
-    "twilio": "^5.13.0"
+    "axios": "^1.13.6",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dayjs": "^1.11.20",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.1",
+    "firebase-admin": "^13.7.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
