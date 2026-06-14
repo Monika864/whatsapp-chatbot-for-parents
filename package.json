@@ -1,0 +1,14 @@
+{
+  "name": "parent-chatbot-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve -l 5173 .",
+    "dev": "serve -l 5173 ."
+  },
+  "dependencies": {
+    "firebase": "^12.10.0",
+    "serve": "^14.2.4",
+    "twilio": "^5.13.0"
+  }
+}

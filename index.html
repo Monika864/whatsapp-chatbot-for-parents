@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent Chat Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+
+    <main class="app-shell">
+      <section class="panel hero">
+        <h1>Parent WhatsApp-Style Portal</h1>
+        <p>
+          Enter your child registration number and any phone number where you want to receive the OTP.
+        </p>
+      </section>
+
+      <section class="panel" id="authPanel">
+        <h2>Parent Authentication</h2>
+        <form id="requestOtpForm" class="grid-2">
+          <label>
+            Child Registration Number
+            <input type="text" id="registrationNumber" placeholder="REG22CSE1001" required />
+          </label>
+          <label>
+            Phone Number For OTP
+            <input type="tel" id="parentPhoneNumber" placeholder="+91 62813 27732" required />
+          </label>
+          <button type="submit" class="btn">Send OTP</button>
+        </form>
+
+        <form id="verifyOtpForm" class="grid-2 hidden auth-gap">
+          <label>
+            Enter OTP
+            <input type="text" id="otp" placeholder="6-digit OTP" required />
+          </label>
+          <button type="submit" class="btn">Verify OTP</button>
+        </form>
+      </section>
+
+      <section class="panel hidden" id="chatPanel">
+        <h2>Parent Chat</h2>
+        <div id="chatWindow" class="chat-window"></div>
+        <div class="quick-options" id="quickOptions">
+          <button class="btn option-btn" data-option="1">Attendance</button>
+          <button class="btn option-btn" data-option="2">Internal Marks</button>
+          <button class="btn option-btn" data-option="3">CGPA</button>
+          <button class="btn option-btn" data-option="4">Backlogs</button>
+          <button class="btn option-btn" data-option="5">Counselor</button>
+          <button class="btn option-btn" data-option="6">Fee Status</button>
+          <button class="btn option-btn" data-option="7">Credits</button>
+          <button class="btn option-btn" data-option="8">Calendar</button>
+          <button class="btn option-btn" data-option="9">Exams</button>
+          <button class="btn option-btn" data-option="10">Suspension</button>
+          <button class="btn option-btn" data-option="11">Faculty</button>
+        </div>
+        <form id="chatInputForm" class="grid-2 auth-gap">
+          <label>
+            Type option (1-11) or keyword
+            <input type="text" id="chatInput" placeholder="Type attendance / 1 / cgpa" />
+          </label>
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </section>
+
+      <p id="status" class="status"></p>
+    </main>
+
+    <script type="module" src="app.js?v=20260314"></script>
+  </body>
+</html>
